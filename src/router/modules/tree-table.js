@@ -19,6 +19,7 @@ const treeTableRouter = {
       meta: { title: 'treeTable' }
     },
     {
+      // 定制的树形表格
       path: 'custom',
       component: () => import('@/views/tree-table/custom'),
       name: 'CustomTreeTableDemo',

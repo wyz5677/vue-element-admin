@@ -1,6 +1,7 @@
 <template>
   <section class="app-main">
     <transition name="fade-transform" mode="out-in">
+      <!-- 这里在 app-main 外部包了一层 keep-alive 主要是为了缓存 <router-view> 的，配合页面的 tabs-view 标签导航使用，如不需要可自行去除。 -->
       <keep-alive :include="cachedViews">
         <router-view :key="key" />
       </keep-alive>

@@ -18,26 +18,29 @@ import nestedRouter from './modules/nested'
  **/
 
 /**
-* hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
-* alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
-*                                if not set alwaysShow, only more than one route under the children
-*                                it will becomes nested mode, otherwise not show the root menu
-* redirect: noredirect           if `redirect:noredirect` will no redirect in the breadcrumb
-* name:'router-name'             the name is used by <keep-alive> (must set!!!)
+* hidden: true                   //当设置 true 的时候该路由不会再侧边栏出现 如401，login等页面，或者如一些编辑页面/edit/1
+* alwaysShow: true               //当你一个路由下面的 children 声明的路由大于1个时，自动会变成嵌套的模式--如组件页面
+*                                只有一个时，会将那个子路由当做根路由显示在侧边栏--如引导页面
+*                                若你想不管路由下面的 children 声明的个数都显示你的根路由
+*                                你可以设置 alwaysShow: true，这样它就会忽略之前定义的规则，一直显示根路由
+* redirect: noredirect           //当设置 noredirect 的时候该路由在面包屑导航中不可被点击
+* name:'router-name'             //设定路由的名字，一定要填写不然使用<keep-alive>时会出现各种问题
 * meta : {
-    roles: ['admin','editor']    will control the page roles (you can set multiple roles)
-    title: 'title'               the name show in sub-menu and breadcrumb (recommend set)
-    icon: 'svg-name'             the icon show in the sidebar
-    noCache: true                if true, the page will no be cached(default is false)
-    breadcrumb: false            if false, the item will hidden in breadcrumb(default is true)
-    affix: true                  if true, the tag will affix in the tags-view
+    roles: ['admin','editor']    //设置该路由进入的权限，支持多个权限叠加
+    title: 'title'               //设置该路由在侧边栏和面包屑中展示的名字
+    icon: 'svg-name'             //设置该路由的图标
+    noCache: true                //如果设置为true，则不会被 <keep-alive> 缓存(默认 false)
+    breadcrumb: false            //如果设置为false，则不会在breadcrumb面包屑中显示
+    affix: true                  if true, the tag will affix in the tags-view 如果设置为true,将会吸附
   }
 **/
+
+// 代表那些不需要动态判断权限的路由，如登录页、404、等通用页面。
 export const constantRoutes = [
   {
     path: '/redirect',
     component: Layout,
-    hidden: true,
+    hidden: true, // 该路由不会再侧边栏出现
     children: [
       {
         path: '/redirect/:path*',
@@ -45,10 +48,10 @@ export const constantRoutes = [
       }
     ]
   },
-  {
+  { // 登陆页面
     path: '/login',
     component: () => import('@/views/login/index'),
-    hidden: true
+    hidden: true // 该路由不会再侧边栏出现
   },
   {
     path: '/auth-redirect',
@@ -111,16 +114,17 @@ export default new Router({
   routes: constantRoutes
 })
 
+// 代表那些需求动态判断权限并通过 addRoutes 动态添加的页面。
 export const asyncRoutes = [
   {
     path: '/permission',
     component: Layout,
-    redirect: '/permission/index',
-    alwaysShow: true, // will always show the root menu
+    redirect: '/permission/index', // 不知道什么意思 /重定向地址，在面包屑中点击会重定向去的地址  不是默认会重定向吗?
+    alwaysShow: true, // will always show the root menu     是否总是显示根路由在侧边栏
     meta: {
       title: 'permission',
-      icon: 'lock',
-      roles: ['admin', 'editor'] // you can set roles in root nav
+      icon: 'lock', // 这个icon为什么设置后就有对应字体图标?
+      roles: ['admin', 'editor'] // you can set roles in root nav   根路由的权限配置
     },
     children: [
       {
@@ -166,11 +170,16 @@ export const asyncRoutes = [
     ]
   },
 
-  /** When your routing table is too long, you can split it into small modules**/
+  /** 当你的路由表太长 可以将其拆分为小的模块**/
+  // 组件路由
   componentsRouter,
+  // 图标路由
   chartsRouter,
+  // 嵌套路由
   nestedRouter,
+  // 表格
   tableRouter,
+  // 树形表格
   treeTableRouter,
 
   {
@@ -184,12 +193,14 @@ export const asyncRoutes = [
     },
     children: [
       {
+        // 创建文章
         path: 'create',
         component: () => import('@/views/example/create'),
         name: 'CreateArticle',
         meta: { title: 'createArticle', icon: 'edit' }
       },
       {
+        // 修改文章
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/example/edit'),
         name: 'EditArticle',
@@ -197,6 +208,7 @@ export const asyncRoutes = [
         hidden: true
       },
       {
+        // 文章列表
         path: 'list',
         component: () => import('@/views/example/list'),
         name: 'ArticleList',
@@ -206,6 +218,7 @@ export const asyncRoutes = [
   },
 
   {
+    // tab切换栏
     path: '/tab',
     component: Layout,
     children: [
@@ -219,6 +232,7 @@ export const asyncRoutes = [
   },
 
   {
+    // 错误页面
     path: '/error',
     component: Layout,
     redirect: 'noredirect',
@@ -244,6 +258,7 @@ export const asyncRoutes = [
   },
 
   {
+    // 错误提示
     path: '/error-log',
     component: Layout,
     redirect: 'noredirect',
@@ -258,6 +273,7 @@ export const asyncRoutes = [
   },
 
   {
+    // excel表格
     path: '/excel',
     component: Layout,
     redirect: '/excel/export-excel',
@@ -295,6 +311,7 @@ export const asyncRoutes = [
   },
 
   {
+    // 导出zip格式
     path: '/zip',
     component: Layout,
     redirect: '/zip/download',
@@ -311,6 +328,7 @@ export const asyncRoutes = [
   },
 
   {
+    // 下载pdf格式
     path: '/pdf',
     component: Layout,
     redirect: '/pdf/index',
@@ -330,6 +348,7 @@ export const asyncRoutes = [
   },
 
   {
+    // 主题
     path: '/theme',
     component: Layout,
     redirect: 'noredirect',
@@ -344,6 +363,7 @@ export const asyncRoutes = [
   },
 
   {
+    // 剪贴版
     path: '/clipboard',
     component: Layout,
     redirect: 'noredirect',
@@ -358,6 +378,7 @@ export const asyncRoutes = [
   },
 
   {
+    // 换肤
     path: '/i18n',
     component: Layout,
     children: [
@@ -371,6 +392,7 @@ export const asyncRoutes = [
   },
 
   {
+    // 外链
     path: 'external-link',
     component: Layout,
     children: [

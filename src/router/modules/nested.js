@@ -1,10 +1,11 @@
-/** When your routing table is too long, you can split it into small modules**/
+/** 当路由表太长时，可以将其拆分为小模块 nested 嵌套的 **/
 
 import Layout from '@/views/layout/Layout'
 
 const nestedRouter = {
   path: '/nested',
   component: Layout,
+  // 点击面包屑重定向的地址
   redirect: '/nested/menu1/menu1-1',
   name: 'Nested',
   meta: {

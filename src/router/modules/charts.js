@@ -5,6 +5,7 @@ import Layout from '@/views/layout/Layout'
 const chartsRouter = {
   path: '/charts',
   component: Layout,
+  // 当设置 noredirect 的时候该路由在面包屑导航中不可被点击
   redirect: 'noredirect',
   name: 'Charts',
   meta: {
