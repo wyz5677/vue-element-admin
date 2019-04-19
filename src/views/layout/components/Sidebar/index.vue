@@ -1,4 +1,5 @@
 <template>
+  <!-- 使用使用了 el-scrollbar 来处理侧边栏滚动问题-->
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
       :default-active="$route.path"

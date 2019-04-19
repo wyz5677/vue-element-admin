@@ -35,6 +35,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
+    // 这里指定了@为src路径 webpack可以配置alias(也就是路径别名
     alias: {
       '@': resolve('src')
     }

@@ -31,7 +31,7 @@ import nestedRouter from './modules/nested'
     icon: 'svg-name'             //设置该路由的图标
     noCache: true                //如果设置为true，则不会被 <keep-alive> 缓存(默认 false)
     breadcrumb: false            //如果设置为false，则不会在breadcrumb面包屑中显示
-    affix: true                  if true, the tag will affix in the tags-view 如果设置为true,将会吸附
+    affix: true                  //当在声明路由是 添加了 Affix 属性，则当前tag会被固定在 tags-view标签栏导航中（不可被删除）
   }
 **/
 
@@ -392,7 +392,7 @@ export const asyncRoutes = [
   },
 
   {
-    // 外链
+    // 外链 你也可以在侧边栏中配置一个外链，只要你在 path 中填写了合法的 url 路径，当你点击侧边栏的时候就会帮你新开这个页面。
     path: 'external-link',
     component: Layout,
     children: [
