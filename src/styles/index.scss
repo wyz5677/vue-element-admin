@@ -1,3 +1,4 @@
+// 全局通用样式
 @import './variables.scss';
 @import './mixin.scss';
 @import './transition.scss';
@@ -5,10 +6,14 @@
 @import './sidebar.scss';
 @import './btn.scss';
 
+// 在index.scss中导入其他所有样式 然后在引用处打包这个Index.css即可打包全部
 body {
   height: 100%;
+  // 是火狐在自己的渲染引擎中增加的对字体抗锯齿的调整 设置grayscale对于图标字体表现更清晰。
   -moz-osx-font-smoothing: grayscale;
+  // 是webkit在自己的渲染引擎中增加的对字体抗锯齿的调整
   -webkit-font-smoothing: antialiased;
+  // 当绘制文本时，浏览器会侧重文本的可读性（清晰度），而不是渲染速度和几何 精度。该属性值可以用于字距调整和连字。 
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
@@ -29,6 +34,7 @@ html {
 *,
 *:before,
 *:after {
+  // 继承 父元素 box-sizing属性的值
   box-sizing: inherit;
 }
 
@@ -50,6 +56,7 @@ a:focus,
 a:hover {
   cursor: pointer;
   color: inherit;
+  // 文字下划线
   text-decoration: none;
 }
 
@@ -154,7 +161,9 @@ code {
   width: 100%;
   text-align: right;
   padding-right: 20px;
+  // 动画 最后一个属性没懂意思
   transition: 600ms ease position;
+  // 线性渐变
   background: linear-gradient(90deg, rgba(32, 182, 249, 1) 0%, rgba(32, 182, 249, 1) 0%, rgba(33, 120, 241, 1) 100%, rgba(33, 120, 241, 1) 100%);
 
   .subtitle {

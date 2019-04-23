@@ -6,7 +6,7 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-
+// 引入公共样式
 import '@/styles/index.scss' // global css
 
 import App from './App'

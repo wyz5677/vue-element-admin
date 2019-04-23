@@ -84,6 +84,8 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+// 引入minxin后可以 通过 @incluede 引入其中的内容
+//本项目没有设置自动注入 sass 的 mixin 到全局，所以需要在使用的地方手动引入 mixin
 @import "~@/styles/mixin.scss";
 .upload-container {
   width: 100%;

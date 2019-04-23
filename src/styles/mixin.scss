@@ -1,3 +1,4 @@
+//全局mixin @mixin指令也同样能提高你代码的重复使用率并简化你的代码。 你可以通过@include来调用具有相同名称的mixin模块。
 @mixin clearfix {
   &:after {
     content: "";

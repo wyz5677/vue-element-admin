@@ -1,4 +1,4 @@
-// base color
+// base color 全局变量
 $blue:#324157;
 $light-blue:#3A71A8;
 $red:#C03639;
@@ -23,6 +23,7 @@ $sideBarWidth: 210px;
 
 // the :export directive is the magic sauce for webpack
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+// scss的导出
 :export {
   menuText: $menuText;
   menuActiveText: $menuActiveText;
