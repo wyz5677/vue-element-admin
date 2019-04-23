@@ -2,10 +2,12 @@
 并把 currentValue 的值返回。这就是一个 v-model 的语法糖，它要求 props 有一个叫 value 的项，同时触发的自定义事件必须叫 input。这样就可以在自定义组件上用 v-model 了：
 <vModel v-model="value"></vModel>   -->
 <!--试验了布尔型传值 可以直接传递属性就是true-->
+<!--试验了具名插槽-->
 <template>
   <div>
     {{ currentValue }}
     <button @click="handleClick">Click</button>
+    <slot>哈撒给</slot>
   </div>
 </template>
 <script>

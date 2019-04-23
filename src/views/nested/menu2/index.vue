@@ -1,7 +1,8 @@
 <template>
   <div style="padding:30px;">
     <el-alert :closable="false" title="menu 2" />
-    <vModel v-model="value" disabled />{{ value }}
+    <vModel slot="first" v-model="value" disabled />
+    {{ value }}
   </div>
 </template>
 <script>
