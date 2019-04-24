@@ -1,3 +1,4 @@
+<!--这是一个拇指波动的组件-->
 <template>
   <div :style="{zIndex:zIndex,height:height,width:width}" class="pan-item">
     <div class="pan-info">

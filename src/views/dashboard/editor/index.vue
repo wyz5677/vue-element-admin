@@ -1,14 +1,17 @@
 <template>
   <div class="dashboard-editor-container">
     <div class=" clearfix">
+      <!-- 这是一个拇指拨弄组件 -->
       <pan-thumb :image="avatar" style="float: left">
         Your roles:
         <span v-for="item in roles" :key="item" class="pan-info-roles">{{ item }}</span>
       </pan-thumb>
+      <!-- 右上角图标组件 -->
       <github-corner style="position: absolute; top: 0px; border: 0; right: 0;" />
       <div class="info-container">
+        <!--从vuex取出的name -->
         <span class="display_name">{{ name }}</span>
-        <span style="font-size:20px;padding-top:20px;display:inline-block;">Editor's Dashboard</span>
+        <span style="font-size:20px;padding-top:20px;display:inline-block;">编者Editor's Dashboard</span>
       </div>
     </div>
     <div>
@@ -19,6 +22,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+// 拇指拨弄组件
 import PanThumb from '@/components/PanThumb'
 import GithubCorner from '@/components/GithubCorner'
 

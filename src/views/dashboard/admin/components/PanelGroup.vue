@@ -1,4 +1,5 @@
 <template>
+  <!-- 响应式布局  Row 组件 提供 gutter 属性来指定每一栏之间的间隔，默认间隔为 0。-->
   <el-row :gutter="40" class="panel-group">
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
@@ -6,7 +7,8 @@
           <svg-icon icon-class="peoples" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">New Visits</div>
+          <div class="card-panel-text">New Visits 最新访问量</div>
+          <!-- 一个数字滚动插件 起始值 结束值 持续时间 -->
           <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
         </div>
       </div>
@@ -55,6 +57,7 @@ export default {
     CountTo
   },
   methods: {
+    // 每当点击的时候把类型传给父组件
     handleSetLineChartData(type) {
       this.$emit('handleSetLineChartData', type)
     }

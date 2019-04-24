@@ -1,4 +1,5 @@
 <template>
+  <!-- aria-label属性用来给当前元素加上的标签描述,接受字符串作为参数。 是用不可视的方式给元素加label -->
   <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" class="github-corner" aria-label="View source on Github">
     <svg
       width="80"
