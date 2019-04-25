@@ -187,6 +187,7 @@
   }
   .todo-list li.completed label {
     color: #d9d9d9;
+    // 定义穿过文本下的一条线。
     text-decoration: line-through;
   }
   .todo-list li .destroy {
@@ -299,6 +300,11 @@
   /*
   Hack to remove background from Mobile Safari.
   Can't use it globally since it destroys checkboxes in Firefox
+  黑客从移动Safari删除背景。
+  不能全局使用它，因为它破坏了Firefox中的复选框
+
+  screen用于电脑屏幕，平板电脑，智能手机等。
+  only：指定某种特定的媒体类型，可以用来排除不支持媒体查询的浏览器：
 */
   @media screen and (-webkit-min-device-pixel-ratio:0) {
     .toggle-all,

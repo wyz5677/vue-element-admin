@@ -44,6 +44,9 @@ export default {
   created() {
     this.fetchData()
   },
+  mounted() {
+    console.log('el', this.$el)
+  },
   methods: {
     fetchData() {
       fetchList().then(response => {

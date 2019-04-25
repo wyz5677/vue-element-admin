@@ -3,8 +3,11 @@
 </template>
 
 <script>
+// 导入百度图表
 import echarts from 'echarts'
+// 导入百度图表的主题 导入的是node_modules下的
 require('echarts/theme/macarons') // echarts theme
+// 去抖动
 import { debounce } from '@/utils'
 
 export default {
@@ -148,7 +151,11 @@ export default {
       })
     },
     initChart() {
+      // $el指向当前组件的整个DOM元素
+      // console.log('el', this.$el)
+      // 初始化echarts时候，使用百度图表主题
       this.chart = echarts.init(this.$el, 'macarons')
+      // 使用刚指定的配置项和数据显示图表。
       this.setOptions(this.chartData)
     }
   }
