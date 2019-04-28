@@ -1,9 +1,11 @@
 const steps = [
   {
+    // 需要选定的class元素
     element: '.hamburger-container',
     popover: {
       title: 'Hamburger',
       description: 'Open && Close sidebar',
+      // 出现位置
       position: 'bottom'
     }
   },

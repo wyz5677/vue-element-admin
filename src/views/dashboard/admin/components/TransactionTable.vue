@@ -7,6 +7,7 @@
     </el-table-column>
     <el-table-column label="Price" width="195" align="center">
       <template slot-scope="scope">
+        <!-- 使用全局过滤器 -->
         ¥{{ scope.row.price | toThousandFilter }}
       </template>
     </el-table-column>
@@ -21,10 +22,12 @@
 </template>
 
 <script>
+// transaction 交易的意思
 import { fetchList } from '@/api/transaction'
 
 export default {
   filters: {
+    // 状态过滤器
     statusFilter(status) {
       const statusMap = {
         success: 'success',
@@ -32,7 +35,9 @@ export default {
       }
       return statusMap[status]
     },
+    // 字符串过滤
     orderNoFilter(str) {
+      // 提取部分字符串
       return str.substring(0, 30)
     }
   },
@@ -42,12 +47,14 @@ export default {
     }
   },
   created() {
+    // 发请求获取数据
     this.fetchData()
   },
   mounted() {
     console.log('el', this.$el)
   },
   methods: {
+    // 拿到请求的数据
     fetchData() {
       fetchList().then(response => {
         this.list = response.data.items.slice(0, 8)

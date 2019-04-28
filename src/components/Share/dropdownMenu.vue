@@ -1,6 +1,7 @@
 <template>
   <div :class="{active:isActive}" class="share-dropdown-menu">
     <div class="share-dropdown-menu-wrapper">
+      <!-- 这是默认显示的字 -->
       <span class="share-dropdown-menu-title" @click.self="clickTitle">{{ title }}</span>
       <div v-for="(item,index) of items" :key="index" class="share-dropdown-menu-item">
         <a v-if="item.href" :href="item.href" target="_blank">{{ item.title }}</a>
@@ -38,6 +39,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" >
+// 这部分未看
 $n: 8; //和items.length 相同
 $t: .1s;
 .share-dropdown-menu {

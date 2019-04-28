@@ -108,7 +108,7 @@ export default {
     }
   },
   methods: {
-    // 拿到子组件穿过来的类型
+    // 拿到子组件传过来的类型
     handleSetLineChartData(type) {
       this.lineChartData = lineChartData[type]
     }
