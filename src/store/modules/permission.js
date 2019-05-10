@@ -1,4 +1,7 @@
-import { asyncRoutes, constantRoutes } from '@/router'
+import {
+  asyncRoutes,
+  constantRoutes
+} from '@/router'
 
 /**
  * 通过meta.role判断是否与当前用户权限匹配
@@ -22,7 +25,9 @@ export function filterAsyncRoutes(routes, roles) {
   const res = []
 
   routes.forEach(route => {
-    const tmp = { ...route }
+    const tmp = {
+      ...route
+    }
     if (hasPermission(roles, tmp)) {
       if (tmp.children) {
         tmp.children = filterAsyncRoutes(tmp.children, roles)
@@ -46,9 +51,13 @@ const permission = {
     }
   },
   actions: {
-    GenerateRoutes({ commit }, data) {
+    GenerateRoutes({
+      commit
+    }, data) {
       return new Promise(resolve => {
-        const { roles } = data
+        const {
+          roles
+        } = data
         let accessedRoutes
         if (roles.includes('admin')) {
           accessedRoutes = asyncRoutes
@@ -61,5 +70,5 @@ const permission = {
     }
   }
 }
-
+// 导出 store
 export default permission

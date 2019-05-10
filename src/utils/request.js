@@ -3,16 +3,16 @@ import { Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 
-// create an axios instance
+// create an axios instance  自定义配置创建axios的新实例
 const service = axios.create({
-  baseURL: process.env.BASE_API, // api 的 base_url
+  baseURL: process.env.BASE_API, // api 的 base_url（在config中的dev.env.js中）     process.env.BASE_API是怎么拿到的？
   timeout: 5000 // request timeout
 })
 
-// request interceptor
+// request interceptor 请求拦截
 service.interceptors.request.use(
   config => {
-    // Do something before request is sent
+    // 请求发送前做某事
     if (store.getters.token) {
       // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
       config.headers['X-Token'] = getToken()
@@ -26,7 +26,7 @@ service.interceptors.request.use(
   }
 )
 
-// response interceptor
+// response interceptor 响应拦截
 service.interceptors.response.use(
   response => response,
   /**

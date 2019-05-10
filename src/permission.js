@@ -3,7 +3,7 @@ import store from './store'
 import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import { getToken } from '@/utils/auth' // get token from cookie
+import { getToken } from '@/utils/auth' // 拿到Token
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -16,15 +16,17 @@ function hasPermission(roles, permissionRoles) {
 
 const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
 
+// 全局前置守卫
 router.beforeEach((to, from, next) => {
-  NProgress.start() // start progress bar
+  NProgress.start() // 开始进度条执行
+  // 权限验证：通过token获取用户对应的 role，动态根据用户的 role 算出其对应有权限的路由，通过 router.addRoutes 动态挂载这些路由。
   if (getToken()) {
-    // determine if there has token
+    // 确定是否有令牌
 
     /* has token*/
     if (to.path === '/login') {
       next({ path: '/' })
-      NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it
+      NProgress.done() // 如果当前页面是仪表盘，每个钩子都不会触发，所以手动处理它
     } else {
       if (store.getters.roles.length === 0) {
         // 判断当前用户是否已拉取完user_info信息
@@ -50,6 +52,7 @@ router.beforeEach((to, from, next) => {
         if (hasPermission(store.getters.roles, to.meta.roles)) {
           next()
         } else {
+          // 设置 replace 属性的话，当点击时，会调用 router.replace() 而不是 router.push()，于是导航后不会留下 history 记录。
           next({ path: '/401', replace: true, query: { noGoBack: true }})
         }
         // 可删 ↑
@@ -68,5 +71,5 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(() => {
-  NProgress.done() // finish progress bar
+  NProgress.done() // 完成进度条
 })
