@@ -10,6 +10,7 @@ import {
  */
 function hasPermission(roles, route) {
   if (route.meta && route.meta.roles) {
+    // 如果用户有这个权限就返回true 否则返回false
     return roles.some(role => route.meta.roles.includes(role))
   } else {
     return true

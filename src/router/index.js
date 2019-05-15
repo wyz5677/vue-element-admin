@@ -12,6 +12,7 @@ import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import treeTableRouter from './modules/tree-table'
 import nestedRouter from './modules/nested'
+import myComponentsRouter from './modules/myComponents'
 
 /** note: sub-menu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -181,7 +182,6 @@ export const asyncRoutes = [
   tableRouter,
   // 树形表格
   treeTableRouter,
-
   {
     path: '/example',
     component: Layout,
@@ -402,6 +402,7 @@ export const asyncRoutes = [
       }
     ]
   },
-
+  // 我收集的组件
+  myComponentsRouter,
   { path: '*', redirect: '/404', hidden: true }
 ]

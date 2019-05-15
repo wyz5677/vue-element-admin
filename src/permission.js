@@ -14,7 +14,7 @@ function hasPermission(roles, permissionRoles) {
   return roles.some(role => permissionRoles.indexOf(role) >= 0)
 }
 
-const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
+const whiteList = ['/login', '/auth-redirect'] // 不会重定向的白名单
 
 // 全局前置守卫
 router.beforeEach((to, from, next) => {
@@ -48,7 +48,8 @@ router.beforeEach((to, from, next) => {
             })
           })
       } else {
-        // 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓
+        // 如果没有动态改变权限的需求可直接next() 删除下方权限判断 ↓
+        // roles: ["admin", __ob__: Observer]
         if (hasPermission(store.getters.roles, to.meta.roles)) {
           next()
         } else {
@@ -65,7 +66,7 @@ router.beforeEach((to, from, next) => {
       next()
     } else {
       next(`/login?redirect=${to.path}`) // 否则全部重定向到登录页
-      NProgress.done() // if current page is login will not trigger afterEach hook, so manually handle it
+      NProgress.done() // 如果当前页面是登录后不会触发每个钩子，所以手动处理它
     }
   }
 })
