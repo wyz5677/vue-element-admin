@@ -19,6 +19,13 @@ const myComponentsRouter = {
       component: () => import('@/myComponents/showFromRight/demo'),
       name: 'showFromRightDemo',
       meta: { title: 'showFromRight' }
+    },
+    {
+      // 右边侧拉框组件
+      path: 'tabLit',
+      component: () => import('@/myComponents/tabList/demo'),
+      name: 'tabLitDemo',
+      meta: { title: 'tabLit' }
     }
   ]
 }
