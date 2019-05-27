@@ -26,6 +26,41 @@ const myComponentsRouter = {
       component: () => import('@/myComponents/tabList/demo'),
       name: 'tabLitDemo',
       meta: { title: 'tabLit' }
+    },
+    {
+      // 拖拽框组件
+      path: 'DragAround',
+      component: () => import('@/myComponents/DragAround/demo'),
+      name: 'DragAroundDemo',
+      meta: { title: 'DragAround' }
+    },
+    {
+      // 过滤器组件
+      path: 'columnFilter',
+      component: () => import('@/myComponents/columnFilter/demo'),
+      name: 'columnFilterDemo',
+      meta: { title: 'columnFilter' }
+    },
+    {
+      // 全屏组件
+      path: 'screenFullTwo',
+      component: () => import('@/myComponents/screenFullTwo/demo'),
+      name: 'screenFullTwoDemo',
+      meta: { title: 'screenFullTwo' }
+    },
+    {
+      // 全屏组件
+      path: 'horizontalScroll',
+      component: () => import('@/myComponents/horizontalScroll/demo'),
+      name: 'horizontalScrollDemo',
+      meta: { title: 'horizontalScroll' }
+    },
+    {
+      // 全屏加载组件
+      path: 'GlobalLoading',
+      component: () => import('@/myComponents/GlobalLoading/demo'),
+      name: 'GlobalLoadingDemo',
+      meta: { title: 'GlobalLoading' }
     }
   ]
 }

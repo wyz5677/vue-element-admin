@@ -65,7 +65,15 @@ export default {
     theme: 'Theme',
     clipboardDemo: 'Clipboard',
     i18n: 'I18n',
-    externalLink: 'External Link'
+    externalLink: 'External Link',
+    myComponents: 'myComponents',
+    showFromRight: 'showFromRight',
+    tabLit: 'tabLit',
+    DragAround: 'DragAround',
+    columnFilter: 'columnFilter',
+    screenFullTwo: 'screenFullTwo',
+    horizontalScroll: 'horizontalScroll',
+    GlobalLoading: 'GlobalLoading'
   },
   navbar: {
     logOut: 'Log Out',

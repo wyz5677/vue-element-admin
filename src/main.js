@@ -8,6 +8,8 @@ import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // 引入公共样式
 import '@/styles/index.scss' // global css
+// iconfont
+import '@/assets/font/iconfont.css'
 
 import App from './App'
 import store from './store'
