@@ -24,7 +24,7 @@ import myComponentsRouter from './modules/myComponents'
 *                                只有一个时，会将那个子路由当做根路由显示在侧边栏--如引导页面
 *                                若你想不管路由下面的 children 声明的个数都显示你的根路由
 *                                你可以设置 alwaysShow: true，这样它就会忽略之前定义的规则，一直显示根路由
-* redirect: noredirect           //当设置 noredirect 的时候该路由在面包屑导航中不可被点击
+* redirect: noredirect           //当设置 noredirect 的时候该路由在面包屑导航中不可被点击(在面包屑中可以根据redirect是否为noredirect来判断是否可以点击)
 * name:'router-name'             //设定路由的名字，一定要填写不然使用<keep-alive>时会出现各种问题
 * meta : {
     roles: ['admin','editor']    //设置该路由进入的权限，支持多个权限叠加
@@ -112,6 +112,7 @@ export const constantRoutes = [
 export default new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
+  // 创建vue实例的时候将vue-router挂载，但这个时候vue-router挂载一些登录或者不用权限的公用的页面
   routes: constantRoutes
 })
 
@@ -120,7 +121,7 @@ export const asyncRoutes = [
   {
     path: '/permission',
     component: Layout,
-    redirect: '/permission/index', // 不知道什么意思 /重定向地址，在面包屑中点击会重定向去的地址  不是默认会重定向吗?
+    redirect: '/permission/index', // 在匹配到/permission时候 会加载layout组件 然后因为在layout组件中有router-view 能够把其子组件显示在layout组件的router-view里 所以重定向时候 都是定向到子组件 就会加载layout组件 并把其重定向的子组件显示在layout的router-view中
     alwaysShow: true, // will always show the root menu     是否总是显示根路由在侧边栏
     meta: {
       title: 'permission',
@@ -404,5 +405,6 @@ export const asyncRoutes = [
   },
   // 我收集的组件
   myComponentsRouter,
+  // 404 页面一定要最后加载，如果放在constantRouterMap一同声明了404，后面的所以页面都会被拦截到404
   { path: '*', redirect: '/404', hidden: true }
 ]

@@ -1,3 +1,5 @@
+// 权限控制挂载在main.js中
+
 import router from './router'
 import store from './store'
 import { Message } from 'element-ui'
@@ -5,9 +7,10 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // 拿到Token
 
+// 想禁用进度环？设置 showSpinner 为 false。
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-// permission judge function
+// 权限判断方法
 function hasPermission(roles, permissionRoles) {
   if (roles.includes('admin')) return true // admin permission passed directly
   if (!permissionRoles) return true
@@ -29,12 +32,14 @@ router.beforeEach((to, from, next) => {
       NProgress.done() // 如果当前页面是仪表盘，每个钩子都不会触发，所以手动处理它
     } else {
       if (store.getters.roles.length === 0) {
-        // 判断当前用户是否已拉取完user_info信息
+        // 判断当前用户是否已拉取完user_info信息 如果没有拉取用户信息 就去拉取
         store
           .dispatch('GetUserInfo')
           .then(res => {
             // 拉取user_info
-            const roles = res.data.roles // note: roles must be a object array! such as: [{id: '1', name: 'editor'}, {id: '2', name: 'developer'}]
+            console.log('res-------', res)
+            const roles = res.data.roles //  但是roles是['admin']     note: roles must be a object array! such as: [{id: '1', name: 'editor'}, {id: '2', name: 'developer'}]
+            // 传递的时候居然也可以解构.
             store.dispatch('GenerateRoutes', { roles }).then(accessRoutes => {
               // 根据roles权限生成可访问的路由表
               router.addRoutes(accessRoutes) // 动态添加可访问路由表

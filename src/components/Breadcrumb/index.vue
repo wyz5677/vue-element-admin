@@ -45,7 +45,7 @@ export default {
   methods: {
     generateTitle,
     getBreadcrumb() {
-      // filter返回满足条件(这里是满足 item.name存在的项)的所有元素组成一个数组
+      // filter返回满足条件(这里是满足 item.name存在的项,也就是定义过的子路由)的所有元素组成一个数组
       console.log('this.$route-', this.$route)
       let matched = this.$route.matched.filter(item => item.name)
       console.log('matched', matched)

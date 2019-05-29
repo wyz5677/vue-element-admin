@@ -142,12 +142,15 @@ export default {
         this.$refs.password.focus()
       })
     },
+    // 点击登录按钮的方法
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
+          // 调用vuex的actions中的LoginByUsername,向后端校验账号密码正确与否,后端返还一个token,我们存到vuex的token和cookie中,之后会在导航守卫去拦截
           this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
             this.loading = false
+            // 跳转
             this.$router.push({ path: this.redirect || '/' })
           }).catch(() => {
             this.loading = false
