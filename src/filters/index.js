@@ -40,3 +40,18 @@ export function numberFormatter(num, digits) {
 export function toThousandFilter(num) {
   return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
 }
+
+// 宝安项目filters
+import Vue from 'vue'
+import { formatTime, formatDuration } from '@/utils/date'
+// 格式化日期为年 月 日
+Vue.filter('YMDDate', function(val) {
+  return formatTime(val, 'YYYY-MM-DD')
+})
+Vue.filter('YMDHMSDate', function(val) {
+  return formatTime(val, 'YYYY-MM-DD HH:mm:ss')
+})
+// 格式化毫秒值的时长
+Vue.filter('formatDuration', function(val) {
+  return formatDuration(val)
+})

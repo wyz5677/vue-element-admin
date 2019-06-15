@@ -7,7 +7,7 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // 拿到Token
 
-// 想禁用进度环？设置 showSpinner 为 false。
+// 想禁用进度环？设置 showSpinner 为 false。(进度环就是一个转的圈圈)
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 // 权限判断方法
