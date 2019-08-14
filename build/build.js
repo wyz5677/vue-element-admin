@@ -1,6 +1,7 @@
 'use strict'
+//引入版本检测的工具
 require('./check-versions')()
-
+// 一个日志的loading
 const ora = require('ora')
 const rm = require('rimraf')
 const path = require('path')
@@ -14,8 +15,9 @@ var serveStatic = require('serve-static')
 const spinner = ora(
   'building for ' + process.env.env_config + ' environment...'
 )
+// 调用这个loading方法就可以在生产环境下出一些Loading ，也就是蓝窗里面输入命令后自动出现的一些话
 spinner.start()
-
+// 打包前自动回吧dist目录清除掉再打包
 rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
   if (err) throw err
   webpack(webpackConfig, (err, stats) => {

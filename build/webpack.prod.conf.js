@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const webpack = require('webpack')
 const config = require('../config')
+// 这个工具用来基于基础配置的基础上合并生产的配置
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -15,13 +16,13 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
-
+// 定义了一个生产环境的变量
 const env = require('../config/' + process.env.env_config + '.env')
 
 // For NamedChunksPlugin
 const seen = new Set()
 const nameLength = 4
-
+// 合并了
 const webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
   module: {
@@ -31,14 +32,18 @@ const webpackConfig = merge(baseWebpackConfig, {
       usePostCSS: true
     })
   },
+  // 是否开启生产模式下的suorcemap调试
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
+  // 输出
   output: {
     path: config.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash:8].js'),
     chunkFilename: utils.assetsPath('js/[name].[chunkhash:8].js')
   },
+  // 插件
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
+    // 定义环境变量的插件
     new webpack.DefinePlugin({
       'process.env': env
     }),
@@ -50,6 +55,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
+    // Html的打包插件 它会把.vue文件之类的打包进index.html里面去
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: 'index.html',
@@ -59,9 +65,13 @@ const webpackConfig = merge(baseWebpackConfig, {
       templateParameters: {
         BASE_URL: config.build.assetsPublicPath + config.build.assetsSubDirectory,
       },
+      // 压缩
       minify: {
+        // 删除html里面的注释
         removeComments: true,
+        // 删除空格
         collapseWhitespace: true,
+        // 删除html属性的引号
         removeAttributeQuotes: true
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference

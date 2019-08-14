@@ -46,10 +46,12 @@ module.exports = {
 
   build: {
     // Template for index.html
+    //打包后为什么叫dist? 原因在此
     index: path.resolve(__dirname, '../dist/index.html'),
 
-    // Paths
+    // Paths 打包完后的根目录
     assetsRoot: path.resolve(__dirname, '../dist'),
+    // 静态资源二级的输出目录
     assetsSubDirectory: 'static',
 
     /**
@@ -58,6 +60,7 @@ module.exports = {
     *例如GitHub页面。如果您计划将站点部署到https://foo.github.io/bar/，
     *然后将assetsPublicPath设置为“/bar/”。
     *在大多数情况下请使用'/' !!
+    *静态资源的前缀  （比较有用） 例如引入cdn就可以打包的时候配置这里
      */
     assetsPublicPath: '/',
 
