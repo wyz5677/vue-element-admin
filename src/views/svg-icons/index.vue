@@ -22,6 +22,7 @@
 
 <script>
 import icons from './requireIcons'
+// 导入复制插件
 import clipboard from '@/utils/clipboard'
 
 export default {
@@ -32,9 +33,11 @@ export default {
     }
   },
   methods: {
+    // 一个处理的方法
     generateIconCode(symbol) {
       return `<svg-icon icon-class="${symbol}" />`
     },
+    // 点击的时候调用复制的方法
     handleClipboard(text, event) {
       clipboard(text, event)
     }

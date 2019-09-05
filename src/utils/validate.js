@@ -2,10 +2,12 @@
  * Created by jiachenpan on 16/11/18.
  */
 
+//  通过正则.test()方法可以匹配字符串中是否存在于正则表达式相匹配的结果，如果有匹配内容，返回true，否则为false
 export function isExternal(path) {
   return /^(https?:|mailto:|tel:)/.test(path)
 }
 
+/* 校验用户名 */
 export function validUsername(str) {
   const valid_map = ['admin', 'editor']
   return valid_map.indexOf(str.trim()) >= 0
@@ -36,7 +38,7 @@ export function validAlphabets(str) {
 }
 
 /**
- * validate email
+ * 校验邮箱
  * @param email
  * @returns {boolean}
  */

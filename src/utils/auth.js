@@ -1,4 +1,4 @@
-// cookie中存取删除token
+// cookie中存 取 删除token的方法
 
 // 为了保证安全性，我司现在后台所有token有效期(Expires/Max-Age)都是Session，
 // 就是当浏览器关闭了就丢失了。重新打开游览器都需要重新登录验证，

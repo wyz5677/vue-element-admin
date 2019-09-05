@@ -16,6 +16,12 @@ const nestedRouter = {
     {
       path: 'menu1',
       component: () => import('@/views/nested/menu1/index'), // Parent router-view
+      // 也可以如下写
+      // component:{
+      //   render(c){
+      //     return c('router-view')
+      //   }
+      // },
       name: 'Menu1',
       meta: { title: 'menu1' },
       redirect: '/nested/menu1/menu1-1',
